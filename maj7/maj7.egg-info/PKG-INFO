@@ -1,0 +1,258 @@
+Metadata-Version: 2.1
+Name: maj7
+Version: 1.0.0
+Summary: An interpreter for the programming language Eb-maj7
+Home-page: https://github.com/FelixCeard/maj7
+Author: Felix Ceard-Falkenberg
+Author-email: fece00001@stud.uni-saarland.de
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/FelixCeard/maj7/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GPL-3.0 License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Eb-maj7
+
+## Description
+Eb-maj7 (pronounced E flat major 7) is an esoteric programming language that runs programs and outputs a midi file. 
+This means that one can run an artificial intelligence while writing it so, that it outputs a beautiful midi file to play.<br>
+You have to figure out on what languages this languages takes references, I don't know myself.
+
+## Run
+To run a program, simply clone the repo and run the following cmd: `./maj7.py <path to file>`. <br>
+NOTE: make sure that by default, a python file is opened with an interpreter, not with pycharm etc... <br>
+NOTE 2: this will change to simple cmd (`maj7 [run|build] [path]`)<br>
+
+# Source
+The pip version can be found on GitHub under [this link](https://github.com/FelixCeard/maj7). <br>
+The development version can be found on GitHub under [this link](https://github.com/FelixCeard/Eb-maj7).
+
+
+## How to write a program?
+This is (not) very simple. A program consists of:
+- a header
+  - a title
+  - a key
+  - a composer
+  - a date
+  - a place
+    - **NOTE**: the naming of the place will be important later on
+  - a timing
+  - the name of the main function (it has to be a `Bar`)
+- at least one `Bar`
+- as many `Chord` as you wish - I mean, you are the composer right?
+
+### Header
+The header is to be writen like this:
+```
+<title> in <key>
+<composer>
+Composed in <date>
+Composed in [as many words as you wish, only the last is kept] <place>
+
+Time: <time>
+
+opening in <name of the first Bar>
+```
+
+#### Title
+The Title is not important for the project, so you can write whatever you want, Mr. Hans Zimmer. 
+<br>Note that it only accepts **letters**.
+
+#### Key
+The key has the following Grammar: ```<A|B|C|D|E|F|G>[#] <Major|Minor>```.
+Example: `A# Major`.
+
+#### Composer
+The Composer is not important for the project, so it can contain whatever you wish Einstein.
+<br>Note that it only accepts **letters**.
+
+#### Date:
+The Date may or may not be important for the project. 
+<br>Note that it only accepts **arabic numbers** (0-9).
+
+#### Place
+The place **is very important**. The last word you put after "Composed in" will be the name of the list (you will soon learn what this list is).
+<br>Note that it only accepts **letters**.
+
+#### Time
+Same as date, you know the procedure...
+
+#### Name of the first Bar
+Like the name states, it's the name of the first Bar you want to execute.
+
+### Rest
+So here you are young padawan, motivated to learn about this language. Nice! <br>
+So first up: forget variables...<br>
+
+#### Variables
+...wait not entirely, the language has two variables: `LeftHand` and `RightHand`. (I hope you understand the naming)
+
+#### List
+"*But I need more variables!!*" you may ask... and you'd be wrong but still... I thought of everything.  
+As hinted above there is a (infinitely big) list where you can store values - remember: you named it, it's where you've written your composition.
+<br> to access the content: `<list name>/<index>`.
+Note that index can be a `note number` or a variable.
+
+#### Wait... what's a "note number"
+Well... numbers doesn't really exist in arabic form. 
+<br>You may create a number by the following rules:
+- a note has a [value](./docs/note_values.md)
+  - for example: `C` is 0, `D` is 2, `D#` is 3 etc...
+  - Capital letters a positive, small letters are negative
+    - `d` is -2
+  - Note that you can have as many `#` as you wish, so `D##` is 4.
+- two notes that a next to each other are being multiplied
+  - for example: `DD` is 4 (2x2), `D#D` is 6 (3x2)
+- note groups separated by a `,` are being added together
+  - for example `D#, D` is 5 (3+2), `D#D, D` is 8 (3x2 + 2)
+
+Once you've understood how that works, you just have to relearn how to do basic math, it's a good exercise for the brain old man (or old woman).
+  
+#### Assignments
+Short answer:
+`<variable, list> := <variable, list, note number>`. <br>
+Reason being that i just liked the aesthetic of `:=`, deal with it I guess right.
+
+#### Loops
+Loops are very simple:
+
+##### For
+```
+n|:
+  [code]
+:|
+```
+
+Your code will be looped n times over.
+
+##### While
+```
+|:
+  [code]
+:|
+```
+Your code will be looped **infinitely** over. You have to stop the loop with a `tenuto`.
+
+#### If
+```
+<keyword> a b <play NAME|tenuto> [<keyword> <play NAME| tenuto>]
+```
+If statements are pretty easy for intelligent people to understand. They are 4 keywords: `forte`, `piano`, `harmonizes`.
+<br> The first keyword determines the type of check that is being made
+- forte: a > b
+- piano: a < b
+- harmonizes: a == b (Yes I know, harmonies are more complex, but I think that this is not my problem right?)
+
+NOTE: for the second keyword, a different keyword than the first one should be created, and harmonizes can't be used for the second keyword.
+
+#### Print
+To print sth. to the console, we have two possibilities:
+- `press [hard] <value>` - System.out.print(\<value>)
+- `smash [hard] <value>` - System.out.println(\<value>)
+
+If the keyword `hard` is being used, then the true value of `value` is printed, else it's the ascii representation.
+
+#### Comments 
+Made using `#`. Avoid using inline comments, it's not very stable.
+
+#### Bar and Chords
+Everything (above) must be written in a Bar or a Chord.<br>
+Bars and Chords are basically functions. For the program, they have no difference, but will do different jobs at generating the midi file.
+
+#### Play
+To run a Bar or a chord, simply write `play <name>`.<br>
+NOTE: LeftHand and RightHand are only local, so the played chord/bar doesn't inherit the values of the last chord/bar.
+
+#### User input
+You can use `listen` in a declaration to listen to the users input. Only the ascii number of the first char is returned.
+
+----
+## Example program that print "Hello World"
+```yaml
+Fuer Elise in A Minor
+Ludwig van Beethoven
+Composed in 1802
+Composed in a Saloon
+
+Time: 138
+
+opening in Hello World
+
+# Comment style 1
+
+Bar: Hello World
+  play Write in ens Muda
+  play print
+
+Chord: Write in ens Muda
+  # init index 0
+  LeftHand := C
+  RightHand := C
+
+  # Write H to index
+  Saloon/LeftHand := AF#, D # 72
+
+  # increment index by 1
+  LeftHand := LeftHand, C#
+
+  # Write e
+  # etc...
+  Saloon/LeftHand := AA, C# # 101
+  LeftHand := LeftHand, C#
+
+  # l
+  Saloon/LeftHand := AA#, d # 108 (10x11 - 2)
+  LeftHand := LeftHand, C#
+
+  # l
+  Saloon/LeftHand := AA, G # 108 (10x10 + 8)
+  LeftHand := LeftHand, C#
+
+  # o
+  Saloon/LeftHand := AA, A# # 111
+  LeftHand := LeftHand, C#
+
+  # " "
+  Saloon/LeftHand := EED # 32
+  LeftHand := LeftHand, C#
+
+  # W
+  Saloon/LeftHand := EDA, F#
+  LeftHand := LeftHand, C#
+
+  # o
+  Saloon/LeftHand := AA, A# # 111
+  LeftHand := LeftHand, C#
+
+  # r
+  Saloon/LeftHand := AA#, E
+  LeftHand := LeftHand, C#
+
+  # l
+  Saloon/LeftHand := AA, G # 108
+  LeftHand := LeftHand, C#
+
+  # d
+  Saloon/LeftHand := AA # 100
+  LeftHand := LeftHand, C#
+
+  # !
+  Saloon/LeftHand := EED, C# # 33
+  LeftHand := LeftHand, C#
+
+
+Chord: print
+    # One could also print the chars directly in the above Chord.
+    # This Chord is only there to show for loops
+    LeftHand := C
+    12|:
+        press Saloon/LeftHand
+        LeftHand := LeftHand, C#
+    :|
+```
+
