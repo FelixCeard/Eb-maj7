@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: maj7
-Version: 0.9
+Version: 0.9.2
 Summary: An interpreter for the programming language Eb-maj7
 Home-page: https://github.com/FelixCeard/maj7
 Author: Felix Ceard-Falkenberg
@@ -8,7 +8,7 @@ Author-email: fece00001@stud.uni-saarland.de
 License: UNKNOWN
 Project-URL: Bug Tracker, https://github.com/FelixCeard/maj7/issues
 Platform: UNKNOWN
-Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.10

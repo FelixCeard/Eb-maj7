@@ -1,6 +1,9 @@
 import argparse
 
-from maj7 import Lexer, Parser, Executor
+from maj7.executer import Executor
+from maj7.lexer import Lexer
+from maj7.parser import Parser
+
 
 def run():
     try:
