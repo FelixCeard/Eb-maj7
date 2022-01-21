@@ -1,3 +1,0 @@
-[console_scripts]
-maj7 = maj7.maj7:run
-
